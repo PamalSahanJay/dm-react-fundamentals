@@ -50,9 +50,11 @@
 // }
 
 import React, {useState} from 'react'
+import { useNavigate } from 'react-router-dom';
 
 const AddContact = (props) => {
     const [formData, setFormData] = useState({ name: "", email: "" });
+    const navigate = useNavigate();
 
     const add = () => {
 
@@ -62,6 +64,7 @@ const AddContact = (props) => {
         }
         props.addContactHandler(formData);
         setFormData({ name: "", email: "" })
+        navigate('/')
     }
 
     const onChangeHandler= (e) => {
