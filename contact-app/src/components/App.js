@@ -6,6 +6,7 @@ import AddContact from './AddContact'
 import ContactList from './ContactList'
 import { v4 as uuid } from 'uuid'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+import ContactDetails from './ContactDetails'
 
 function App() {
   const KEY = "CONTACTS_KEY"
@@ -37,8 +38,17 @@ function App() {
       <Router>
         <Header />
         <Routes>
-          <Route path='/' Component={() => <ContactList contacts={contacts} getIdFromContactList={deletehandler} />} />
-          <Route path='/add' Component={()=> <AddContact addContactHandler={addContactHandlerApp} />} />
+          <Route
+            path='/'
+            element={<ContactList contacts={contacts} getIdFromContactList={deletehandler} />}
+          />
+          <Route
+            path='/add'
+            element={<AddContact addContactHandler={addContactHandlerApp} />}
+          />
+        </Routes>
+        <Routes>
+          <Route path='/contacts/:id' Component={ContactDetails}/>
         </Routes>
       </Router>
     </div>
